@@ -1,9 +1,6 @@
 function updateLabels(p5htmlelement,xpos1, ypos1) {
-
-    p5htmlelement.elt.innerHTML = "X: " + xpos1 +"Y: " + ypos1;
+    p5htmlelement.elt.innerHTML = "X: " + xpos1 +"Y: " + ypos1;    
     
-    //lblInfo.innerHTML = "car.x: " + myCar.x + "           car.y: " + myCar.y;
-
     if (frameCount % 300 == 0) {
        // lblFrameRate.elt.innerHTML = frameRate() + " ---- " + frameCount.valueOf();
 
@@ -50,7 +47,3 @@ function AddMyOnInputEventHandler(myHtmlElement, myArray, myIndex, WriteBackValu
     };
 
 }
-
-//  if (keyIsPressed==true && (key="s" || key=="S")) {
-//     console.log("STOP1.");
-//  }

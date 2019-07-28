@@ -11,10 +11,10 @@
     <script src="libraries/p5.dom.js"></script>
     <!-- <script src="libraries/p5.sound.js"></script> -->
 
-    <script src="./worker/gif.worker.js"></script>
-    <script src="CCapture.all.min.js"></script>
+     <script src="./worker/gif.worker.js"></script>
+     <script src="CCapture.all.min.js"></script> 
     <script src="particleflow.js"></script>
-    <script src="myfunctions_p5.js"></script>
+   
     <style>
         body {
             margin: 10;
@@ -22,7 +22,7 @@
             overflow: visible;
         }
 		input{
-			width: 80px
+			width: 70px
 		}
 		span{
 			font-size: "11px"
@@ -46,8 +46,7 @@
 <body>
 
 
-    <p1 font-size="32pt">Interactive Particle Flow</p1>   
-    <p id="MouseCoordinates"></p>
+    <h1>Interactive Particle Flow</h1> 
     <span>Number of Particles:</span>
     <input id="NumberOfParticles" type="number" value="247" step="1" min="1" max="1300" ></input>
 
@@ -71,7 +70,7 @@
         <input id="Freq3TextInput" type="number" value="20.6" step="0.01"></input>
         <input id="Freq3SlideInput" type="range" value="20.6" step="0.2"></input>
     </div>
-	<div id="Animation">
+	<div id="Animation" style="padding-top: 8px">
 			<span>Animation: (0=disabled)</Span>
 			<input id="PhaseIncr" type="number" value="0.1" step="0.1"></input>
 			<input id="Phase2Incr" type="number" value="0" step="0.1"></input>
