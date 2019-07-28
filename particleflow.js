@@ -13,9 +13,9 @@ var repellAngle = 0;
 var CoordText = "";
 
 //****ADJUST THESE TO CONTROL THE ANIMATION */
-var Imax = 247;  //Number of particles
-var ArrayFreq = [108.51, 0.9,180.26]; //Array of Frequencies that define the shape animation 
-var ArrayPhaseIncr=[0,2,1.6]; //Array of phase offsets that control the motion of the animation
+var Imax = 247; //Number of particles
+var ArrayFreq = [108.51, 0.9, 180.26]; //Array of Frequencies that define the shape animation 
+var ArrayPhaseIncr = [0, 2, 1.6]; //Array of phase offsets that control the motion of the animation
 //****ADJUST THESE TO CONTROL THE ANIMATION */
 
 //******SOME NICE PRESETS ********/
@@ -35,10 +35,9 @@ var ArrayPhaseIncr=[0,2,1.6]; //Array of phase offsets that control the motion o
 //var ArrayPhaseIncr = [0, 1, 1];
 //******SOME NICE PRESETS *********/
 
-
 var phase = 0; //initial phase for Frequency 1
-var phase2 = 0.00;//initial phase for Frequency 2
-var phase3 = 0.00;//initial phase for Frequency 3
+var phase2 = 0.00; //initial phase for Frequency 2
+var phase3 = 0.00; //initial phase for Frequency 3
 
 //****ADJUST THESE TO CONTROL THE ANIMATION */
 //SET EnableRecording = true to allow capturing. Press key C to start */
@@ -47,8 +46,8 @@ var phase3 = 0.00;//initial phase for Frequency 3
 //Press key S to stop capturing at any time */
 var EnableRecording = true;
 var RecorderState = 0;
-var EnableFixFrameRecording=true;
-var NumOfFramesToCapture=600;  // at 60 frames per second
+var EnableFixFrameRecording = true;
+var NumOfFramesToCapture = 360; // at 60 frames per second
 //****ADJUST THESE TO CONTROL THE ANIMATION */
 
 var myfps = 60;
@@ -63,7 +62,7 @@ var capturer = new CCapture({
 
 var freqSliders = [];
 var freqInputs = [];
-var IncrementInputs=[];
+var IncrementInputs = [];
 var ParticleCountInput;
 
 function setup() {
@@ -78,10 +77,10 @@ function setup() {
     freqSliders[1] = document.getElementById("Freq2SlideInput");
     freqInputs[2] = document.getElementById("Freq3TextInput");
     freqSliders[2] = document.getElementById("Freq3SlideInput");
-    IncrementInputs[0]=document.getElementById("PhaseIncr");
-    IncrementInputs[1]=document.getElementById("Phase2Incr");
-    IncrementInputs[2]=document.getElementById("Phase3Incr");
-    ParticleCountInput.Value=Imax;
+    IncrementInputs[0] = document.getElementById("PhaseIncr");
+    IncrementInputs[1] = document.getElementById("Phase2Incr");
+    IncrementInputs[2] = document.getElementById("Phase3Incr");
+    ParticleCountInput.Value = Imax;
 
     ParticleCountInput.oninput = function() {
         if (isNaN(ParticleCountInput.value) === false && ParticleCountInput.value <= 1300) {
@@ -93,14 +92,14 @@ function setup() {
         AddMyOnInputEventHandler(freqSliders[k], ArrayFreq, k, true, freqInputs[k]);
         AddMyOnWheelEventHandler(freqInputs[k], 0.5, ArrayFreq, k, true, freqSliders[k]);
         AddMyOnWheelEventHandler(freqSliders[k], 0.2, ArrayFreq, k, true, freqInputs[k])
-        freqInputs[k].value=ArrayFreq[k];
-        freqSliders[k].value=ArrayFreq[k];
+        freqInputs[k].value = ArrayFreq[k];
+        freqSliders[k].value = ArrayFreq[k];
     }
-for (let k = 0; k < 3; k++){
-    AddMyOnInputEventHandler(IncrementInputs[k],ArrayPhaseIncr,k,false);
-    AddMyOnWheelEventHandler(IncrementInputs[k],1,ArrayPhaseIncr,k,false)    
-    IncrementInputs[k].value=ArrayPhaseIncr[k];
-}
+    for (let k = 0; k < 3; k++) {
+        AddMyOnInputEventHandler(IncrementInputs[k], ArrayPhaseIncr, k, false);
+        AddMyOnWheelEventHandler(IncrementInputs[k], 1, ArrayPhaseIncr, k, false)
+        IncrementInputs[k].value = ArrayPhaseIncr[k];
+    }
 
     lblInfo = select("#lblInfo");
     lblX = select("#lblX");
@@ -109,22 +108,22 @@ for (let k = 0; k < 3; k++){
     lblMouseCoord = select("#MouseCoordinates");
     ellipseMode(RADIUS);
     blendMode(BLEND);
-    
-    frameRate(myfps);      
-    
-    if (EnableRecording==false){
+
+    frameRate(myfps);
+
+    if (EnableRecording == false) {
         console.log("Capturing disabled");
-    }else{
+    } else {
         console.log("Capturing Enabled.");
-        if (EnableFixFrameRecording==true && RecorderState==0){
-            console.log("Press C to start capturing.");
+        if (EnableFixFrameRecording == true && RecorderState == 0) {
+            console.log("Press C to capture "+ NumOfFramesToCapture+ " frames.");
         }
     }
 }
 
 function RenderMyLoop() {
 
-    background(255, 255, 255,255);
+    background(255, 255, 255, 255);
     translate(150, 150);
     //rotate(radians(rot));
 
@@ -155,19 +154,20 @@ function RenderMyLoop() {
 }
 
 function draw() {
-    
-    if (RecorderState === 1 && EnableRecording === true && typeof capturer !=="undefined") {
+
+    if (RecorderState === 1 && EnableRecording === true && typeof capturer !== "undefined") {
         capturer.start();
         RecorderState = 2;
         console.log("Recording started...");
-    }   
+    }
     RenderMyLoop();
 
     if (RecorderState === 2 && EnableRecording === true) {
         capturer.capture(canv.canvas);
     }
 
-    if (EnableRecording===true && ((RecorderState === 3) || (RecorderState == 2 && EnableFixFrameRecording===true && frameCount>=NumOfFramesToCapture))){
+    if (EnableRecording === true && ((RecorderState === 3) || (RecorderState == 2 && EnableFixFrameRecording === true &&
+            frameCount >= NumOfFramesToCapture))) {
         capturer.stop();
         capturer.save();
         RecorderState = 0;
@@ -176,32 +176,33 @@ function draw() {
 }
 
 function keyPressed() {
+
     if (key == "s" || key == "S") {
         //console.log(capturer);
-        if (typeof capturer !=="undefined" && RecorderState == 2) {
+        if (typeof capturer !== "undefined" && RecorderState == 2) {
             RecorderState = 3; //stop Capture
-            console.log("Recording stopped! " );
+            console.log("Recording stopped!. Saving file...");
             noLoop();
             return;
         }
-        console.log("Animation stopped." );
-        noLoop();       
+        console.log("Animation stopped.");
+        noLoop();
     }
 
-    if (key == "g" || key == "G") {
+    if ((key == "g" || key == "G") && keyCode !== 103) {
         console.log("Animation Started.");
         loop();
     }
 
-    if ((key == "c" || key == "C") && RecorderState === 0 && EnableRecording === true) {
-        if (typeof capturer !=="undefined"){
+    if ((key == "c" || key == "C") && keyCode !== 99 && RecorderState === 0 && EnableRecording === true) {
+        if (typeof capturer !== "undefined") {
             RecorderState = 1; //Initialize capture
         }
     }
 
-    if (key == "f" || key == "F") {
-        for (let i=0;i<3;i++){
-            freqInputs[i].value=random(0,265.33)
+    if ((key == "f" || key == "F") && keyCode !== 102) {
+        for (let i = 0; i < 3; i++) {
+            freqInputs[i].value = random(0, 265.33)
             freqInputs[i].oninput();
         }
     }
@@ -211,7 +212,7 @@ function AddMyOnWheelEventHandler(myHtmlElement, incr, myArray, myIndex, WriteBa
 
     myHtmlElement.onwheel = function(e) {
         e.preventDefault();
-        if (isNaN(myHtmlElement.value) === false && myHtmlElement.value!="") {
+        if (isNaN(myHtmlElement.value) === false && myHtmlElement.value != "") {
             if (e.deltaY > 0) {
                 myHtmlElement.value = parseFloat(myHtmlElement.value) - parseFloat(incr)
             } else {
@@ -225,13 +226,11 @@ function AddMyOnWheelEventHandler(myHtmlElement, incr, myArray, myIndex, WriteBa
 }
 
 function AddMyOnInputEventHandler(myHtmlElement, myArray, myIndex, WriteBackValue, displayingelement) {
-    
+
     myHtmlElement.oninput = function() {
-        if (isNaN(myHtmlElement.value) === false && myHtmlElement.value!="") {
+        if (isNaN(myHtmlElement.value) === false && myHtmlElement.value != "") {
             myArray[myIndex] = parseFloat(myHtmlElement.value);
-            if (WriteBackValue) displayingelement.value = myArray[myIndex];           
-        } 
+            if (WriteBackValue) displayingelement.value = myArray[myIndex];
+        }
     };
 }
-
-
