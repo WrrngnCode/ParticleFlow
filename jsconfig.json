@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "ES6",
+        "jsx": "preserve",
+        "checkJs": true,
+       
+        
+    },
+    //"exclude": [
+    // "node_modules",
+    //   "**/node_modules/*"
+    //],
+    
+
+    // "typeAcquisition": {
+    //     "enable":true,
+    //     "include": [
+    //         "@types/p5",
+    //     ] }
+      
+    
+   
+
+    
+    
+}
