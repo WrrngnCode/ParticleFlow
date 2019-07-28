@@ -14,25 +14,9 @@ var CoordText = "";
 
 //****ADJUST THESE TO CONTROL THE ANIMATION */
 var Imax = 247;  //Number of particles
-var ArrayFreq = [25.5, 1.6, 1]; //Array of Frequencies that define the shape animation 
-var ArrayPhaseIncr=[0,4,2]; //Array of phase offsets that control the motion of the animation
-
-var phase = 3; //initial phase for Frequency 1
-var phase2 = 5.00;//initial phase for Frequency 2
-var phase3 = 1.00;//initial phase for Frequency 3
+var ArrayFreq = [108.5187, 0.9,180.2640]; //Array of Frequencies that define the shape animation 
+var ArrayPhaseIncr=[0,2,1.6]; //Array of phase offsets that control the motion of the animation
 //****ADJUST THESE TO CONTROL THE ANIMATION */
-
-//**ANIMATION CAPTURING */
-//*** SET EnableRecording = true to allow capturing. Press key C to start */
-//*** SET RecorderState = 1 to start recording automaticcaly */
-//*** SET EnableFixFrameRecording = true to stop capturing after <NumOfFramesToCapture> frames */
-//*** Press key S to stop capturing at any time */
-var EnableRecording = false;
-var RecorderState = 0;
-var EnableFixFrameRecording=true;
-var NumOfFramesToCapture=180;
-//**ANIMATION CAPTURING */
-
 
 //******SOME NICE PRESETS ********/
 //Preset 1
@@ -46,10 +30,26 @@ var NumOfFramesToCapture=180;
 //var ArrayPhaseIncr = [0.1, 0, 0.5];
 
 //Preset 3
-//var Imax=???;
-//var ArrayFreq = [21.47, 1.6, 20.6]; 
-//var ArrayPhaseIncr = [0.1, 0, 0.5];
+//var Imax=277;
+//var ArrayFreq = [72.13, 72.29, 89.85]; 
+//var ArrayPhaseIncr = [0, 1, 1];
 //******SOME NICE PRESETS *********/
+
+
+var phase = 3; //initial phase for Frequency 1
+var phase2 = 5.00;//initial phase for Frequency 2
+var phase3 = 1.00;//initial phase for Frequency 3
+
+//****ADJUST THESE TO CONTROL THE ANIMATION */
+//SET EnableRecording = true to allow capturing. Press key C to start */
+//SET RecorderState = 1 to start recording automaticcaly */
+//SET EnableFixFrameRecording = true to stop capturing after <NumOfFramesToCapture> frames */
+//Press key S to stop capturing at any time */
+var EnableRecording = false;
+var RecorderState = 0;
+var EnableFixFrameRecording=true;
+var NumOfFramesToCapture=180;  // at 60 frames per second
+//****ADJUST THESE TO CONTROL THE ANIMATION */
 
 var myfps = 60;
 var capturer = new CCapture({
@@ -198,8 +198,14 @@ function keyPressed() {
             RecorderState = 1; //Initialize capture
         }
     }
-}
 
+    if (key == "f" || key == "F") {
+        for (let i=0;i<3;i++){
+            freqInputs[i].value=random(0,265.33)
+            freqInputs[i].oninput();
+        }
+    }
+}
 
 function AddMyOnWheelEventHandler(myHtmlElement, incr, myArray, myIndex, WriteBackValue, displayingelement) {
 
@@ -216,7 +222,6 @@ function AddMyOnWheelEventHandler(myHtmlElement, incr, myArray, myIndex, WriteBa
             //console.log("onwheel " + myHtmlElement.id)
         }
     };
-
 }
 
 function AddMyOnInputEventHandler(myHtmlElement, myArray, myIndex, WriteBackValue, displayingelement) {
@@ -227,7 +232,6 @@ function AddMyOnInputEventHandler(myHtmlElement, myArray, myIndex, WriteBackValu
             if (WriteBackValue) displayingelement.value = myArray[myIndex];           
         } 
     };
-
 }
 
 
