@@ -49,7 +49,7 @@ var NumOfFramesToCapture=180;
 //var Imax=???;
 //var ArrayFreq = [21.47, 1.6, 20.6]; 
 //var ArrayPhaseIncr = [0.1, 0, 0.5];
-//******SOME NICE PRESETS ********/
+//******SOME NICE PRESETS *********/
 
 var myfps = 60;
 var capturer = new CCapture({
