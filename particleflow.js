@@ -14,7 +14,7 @@ var CoordText = "";
 
 //****ADJUST THESE TO CONTROL THE ANIMATION */
 var Imax = 247;  //Number of particles
-var ArrayFreq = [108.5187, 0.9,180.2640]; //Array of Frequencies that define the shape animation 
+var ArrayFreq = [108.51, 0.9,180.26]; //Array of Frequencies that define the shape animation 
 var ArrayPhaseIncr=[0,2,1.6]; //Array of phase offsets that control the motion of the animation
 //****ADJUST THESE TO CONTROL THE ANIMATION */
 
