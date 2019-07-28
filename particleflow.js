@@ -36,25 +36,25 @@ var ArrayPhaseIncr=[0,2,1.6]; //Array of phase offsets that control the motion o
 //******SOME NICE PRESETS *********/
 
 
-var phase = 3; //initial phase for Frequency 1
-var phase2 = 5.00;//initial phase for Frequency 2
-var phase3 = 1.00;//initial phase for Frequency 3
+var phase = 0; //initial phase for Frequency 1
+var phase2 = 0.00;//initial phase for Frequency 2
+var phase3 = 0.00;//initial phase for Frequency 3
 
 //****ADJUST THESE TO CONTROL THE ANIMATION */
 //SET EnableRecording = true to allow capturing. Press key C to start */
-//SET RecorderState = 1 to start recording automaticcaly */
+//SET RecorderState = 1 to start recording automatically */
 //SET EnableFixFrameRecording = true to stop capturing after <NumOfFramesToCapture> frames */
 //Press key S to stop capturing at any time */
-var EnableRecording = false;
+var EnableRecording = true;
 var RecorderState = 0;
 var EnableFixFrameRecording=true;
-var NumOfFramesToCapture=180;  // at 60 frames per second
+var NumOfFramesToCapture=600;  // at 60 frames per second
 //****ADJUST THESE TO CONTROL THE ANIMATION */
 
 var myfps = 60;
 var capturer = new CCapture({
     format: 'gif',
-    name: 'GifParticleFlow_1',
+    name: 'GifParticleFlow_2',
     frameRate: myfps,
     workersPath: './worker/',
     verbose: true,
@@ -156,7 +156,7 @@ function RenderMyLoop() {
 
 function draw() {
     
-    if (RecorderState === 1 && EnableRecording === true) {
+    if (RecorderState === 1 && EnableRecording === true && typeof capturer !=="undefined") {
         capturer.start();
         RecorderState = 2;
         console.log("Recording started...");
@@ -167,7 +167,7 @@ function draw() {
         capturer.capture(canv.canvas);
     }
 
-    if (EnableRecording===true && ((RecorderState === 3) || (EnableFixFrameRecording===true && frameCount>=NumOfFramesToCapture))){
+    if (EnableRecording===true && ((RecorderState === 3) || (RecorderState == 2 && EnableFixFrameRecording===true && frameCount>=NumOfFramesToCapture))){
         capturer.stop();
         capturer.save();
         RecorderState = 0;
